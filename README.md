@@ -1,4 +1,4 @@
-# rasa-bot-organizer
+# rasa-plus
 
 It's a Rasa plugin that allows you to separate your dialogs and make them
 more readable (and easier to find) and it will unify them in a single

@@ -26,10 +26,11 @@ def _unify_domain(path):
 def _generate_file(path, filename, content):
     if path.endswith("/"):
         path = path[:-1]
-    with open(f"{path}/{filename}", "w") as f:
+    with open(f"{path}/{filename}", "w+") as f:
         f.write(content)
 
-def unify_domain(path="domain", to="", filename="domain.yml"): # pragma: no cover
+def unify_domain(path="./domain", to=".", filename="domain.yml"): # pragma: no cover
     content = _unify_domain(path)
     _generate_file(to, filename, content)
+    print("File domain.yml created successfully.")
     return "OK"
