@@ -11,7 +11,7 @@ setuptools.setup(
     description="An organizer for your rasa bot dialogs",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/alexandrebarbaruiva/rasa-dialog-unifier",
+    url="https://github.com/alexandrebarbaruiva/rasa-plus",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
