@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="rasa-plus",
-    version="0.0.6",
+    version="0.1.0",
     author="Alexandre Augusto de Sá dos Santos",
     author_email="alexandrebarbaruiva@gmail.com",
     description="An organizer for your rasa bot dialogs",
