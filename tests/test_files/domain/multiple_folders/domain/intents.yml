@@ -1,0 +1,14 @@
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - inform_name
+  - inform_mood
+  - inform_gender
+  - inform_neighborhood
+  - inform_therapy
+  - inform_ethnicity
+  - inform_major
+  - inform_number
+  - affirm
+  - deny

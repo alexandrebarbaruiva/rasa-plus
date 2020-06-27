@@ -1,0 +1,36 @@
+slots:
+  name:
+    type: text
+  triage:
+    type: categorical
+    values:
+      - Yes
+      - No
+  age:
+    type: float
+  gender:
+    type: categorical
+    values:
+      - Male
+      - Female
+      - Other
+  neighborhood:
+    type: text
+  therapy:
+    type: bool
+  ethnicity:
+    type: text
+  work:
+    type: bool
+  major:
+    type: text
+  timeunb:
+    type: float
+  mood:
+    type: categorical
+    values:
+      - Very happy
+      - Happy
+      - Neutral
+      - Sad
+      - Very sad

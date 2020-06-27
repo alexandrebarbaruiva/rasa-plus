@@ -1,0 +1,9 @@
+entities:
+  - name
+  - mood
+  - triage
+  - number
+  - gender
+  - neighborhood
+  - ethnicity
+  - major

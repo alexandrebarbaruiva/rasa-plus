@@ -1,0 +1,72 @@
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - inform_name
+  - inform_mood
+  - inform_gender
+  - inform_neighborhood
+  - inform_therapy
+  - inform_ethnicity
+  - inform_major
+  - inform_number
+  - affirm
+  - deny
+
+entities:
+  - name
+  - mood
+  - triage
+  - number
+  - gender
+  - neighborhood
+  - ethnicity
+  - major
+
+slots:
+  name:
+    type: text
+  triage:
+    type: categorical
+    values:
+      - Yes
+      - No
+  age:
+    type: float
+  gender:
+    type: categorical
+    values:
+      - Male
+      - Female
+      - Other
+  neighborhood:
+    type: text
+  therapy:
+    type: bool
+  ethnicity:
+    type: text
+  work:
+    type: bool
+  major:
+    type: text
+  timeunb:
+    type: float
+
+  mood:
+    type: categorical
+    values:
+      - Very happy
+      - Happy
+      - Neutral
+      - Sad
+      - Very sad
+
+actions:
+  - action_debug_bot
+
+forms:
+  - demographic_form
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

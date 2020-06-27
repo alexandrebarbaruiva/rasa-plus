@@ -1,0 +1,153 @@
+forms:
+  - demographic_form
+
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - inform_name
+  - inform_mood
+  - inform_gender
+  - inform_neighborhood
+  - inform_therapy
+  - inform_ethnicity
+  - inform_major
+  - inform_number
+  - affirm
+  - deny
+
+slots:
+  name:
+    type: text
+  triage:
+    type: categorical
+    values:
+      - Yes
+      - No
+  age:
+    type: float
+  gender:
+    type: categorical
+    values:
+      - Male
+      - Female
+      - Other
+  neighborhood:
+    type: text
+  therapy:
+    type: bool
+  ethnicity:
+    type: text
+  work:
+    type: bool
+  major:
+    type: text
+  timeunb:
+    type: float
+  mood:
+    type: categorical
+    values:
+      - Very happy
+      - Happy
+      - Neutral
+      - Sad
+      - Very sad
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+entities:
+  - name
+  - mood
+  - triage
+  - number
+  - gender
+  - neighborhood
+  - ethnicity
+  - major
+
+actions:
+  - action_debug_bot
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_goodbye:
+  - text: "Bye"
+  - text: "Bye, {name}. See you next time!"
+  - text: "Goodbye, have a nice day!"
+  - text: "Bye, human. I will be here if you want to talk more."
+
+  utter_iamabot:
+  - text: "I am a bot, powered by ENERGY."
+
+  utter_ask_name:
+  - text: "Nice meeting you! What's your name?"
+  - text: "How can I call you?"
+  - text: "I don't know your name yet. What's your name?"
+
+  utter_name:
+  - text: "Nice name, {name}! My name is Rabot!"
+  - text: "My name is Rabot, {name}."
+  - text: "Lovely name, {name}! My name is Rabot."
+  - text: "{name}, what a different name! I'm Rabot!"
+
+  utter_ask_mood:
+  - text: "How are you feeling today, {name}?"
+    buttons:
+      - title: "1"
+        payload: "Very Happy"
+      - title: "2"
+        payload: "Happy"
+      - title: "3"
+        payload: "Neutral"
+      - title: "4"
+        payload: "Sad"
+      - title: "5"
+        payload: "Very Sad"
+
+  utter_user_mood:
+  - text: "You are feeling {mood}."
+
+  utter_ask_triage:
+  - text: "Do you want to go through our triage?"
+    buttons:
+      - title: "Yes, I feel comfortable"
+      - title: "No, I don't feel comfortable"
+
+  utter_triage_choice:
+  - text: "You chose to answer? {triage}."
+
+  utter_ask_demographic:
+  - text: "I would like to know more about you. Can I ask you some questions?"
+
+  utter_ask_age:
+  - text: "How old are you?"
+
+  utter_ask_gender:
+  - text: "To which gender identity do you most identify?"
+
+  utter_ask_neighborhood:
+  - text: "Where do you live?"
+
+  utter_ask_therapy:
+  - text: "Are you currently doing therapy with a professional?"
+
+  utter_ask_ethnicity:
+  - text: "To which ethnicity do you identify most?"
+
+  utter_ask_work:
+  - text: "Are you currently working?"
+
+  utter_ask_major:
+  - text: "What's your major?"
+
+  utter_ask_timeunb:
+  - text: "How many semesters are you studying at UnB?"
+
+  utter_end_demographic:
+  - text: "Great! Now I know more about you."
+  - text: "Thank you! I know you much better now."
+
