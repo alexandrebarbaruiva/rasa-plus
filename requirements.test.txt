@@ -1,1 +1,3 @@
-green
+pytest
+pytest-xdist
+pytest-cov

@@ -20,7 +20,7 @@ setuptools.setup(
     ],
     python_requires=">=3.6",
     py_modules=["rasa_plus.__main__"],
-    install_requires=["Click",],
+    install_requires=["Click"],
     entry_points="""
         [console_scripts]
         rasa_plus=rasa_plus.__main__:rasa_plus
