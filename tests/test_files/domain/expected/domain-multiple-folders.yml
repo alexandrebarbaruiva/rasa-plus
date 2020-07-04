@@ -1,3 +1,16 @@
+actions:
+  - action_debug_bot
+
+entities:
+  - name
+  - mood
+  - triage
+  - number
+  - gender
+  - neighborhood
+  - ethnicity
+  - major
+
 forms:
   - demographic_form
 
@@ -15,60 +28,6 @@ intents:
   - inform_number
   - affirm
   - deny
-
-slots:
-  name:
-    type: text
-  triage:
-    type: categorical
-    values:
-      - Yes
-      - No
-  age:
-    type: float
-  gender:
-    type: categorical
-    values:
-      - Male
-      - Female
-      - Other
-  neighborhood:
-    type: text
-  therapy:
-    type: bool
-  ethnicity:
-    type: text
-  work:
-    type: bool
-  major:
-    type: text
-  timeunb:
-    type: float
-  mood:
-    type: categorical
-    values:
-      - Very happy
-      - Happy
-      - Neutral
-      - Sad
-      - Very sad
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
-
-entities:
-  - name
-  - mood
-  - triage
-  - number
-  - gender
-  - neighborhood
-  - ethnicity
-  - major
-
-actions:
-  - action_debug_bot
 
 responses:
   utter_greet:
@@ -150,4 +109,45 @@ responses:
   utter_end_demographic:
   - text: "Great! Now I know more about you."
   - text: "Thank you! I know you much better now."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+slots:
+  name:
+    type: text
+  triage:
+    type: categorical
+    values:
+      - Yes
+      - No
+  age:
+    type: float
+  gender:
+    type: categorical
+    values:
+      - Male
+      - Female
+      - Other
+  neighborhood:
+    type: text
+  therapy:
+    type: bool
+  ethnicity:
+    type: text
+  work:
+    type: bool
+  major:
+    type: text
+  timeunb:
+    type: float
+  mood:
+    type: categorical
+    values:
+      - Very happy
+      - Happy
+      - Neutral
+      - Sad
+      - Very sad
 
