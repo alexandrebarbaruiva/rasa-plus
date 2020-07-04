@@ -1,6 +1,4 @@
-from os import listdir, walk
-from os.path import isfile, join
-from datetime import datetime
+from os import walk
 import click
 
 
