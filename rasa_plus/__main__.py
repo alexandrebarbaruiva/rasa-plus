@@ -1,6 +1,7 @@
 from os import listdir, walk
 from os.path import isfile, join
 from datetime import datetime
+import click
 
 
 def _get_files(path, type=None):
@@ -11,6 +12,7 @@ def _get_files(path, type=None):
         for file in filenames:
             files.append(f"{dirpath}/{file}")
     return files
+
 
 def _unify_domain(path):
     result = ""
@@ -23,14 +25,40 @@ def _unify_domain(path):
             result += c
     return result
 
+
 def _generate_file(path, filename, content):
     if path.endswith("/"):
         path = path[:-1]
     with open(f"{path}/{filename}", "w+") as f:
         f.write(content)
 
-def unify_domain(path="./domain", to=".", filename="domain.yml"): # pragma: no cover
+
+@click.group()
+def rasa_plus():
+    pass
+
+
+@rasa_plus.command()
+def unify_domain(path="./domain", to=".", filename="domain.yml"):  # pragma: no cover
     content = _unify_domain(path)
     _generate_file(to, filename, content)
-    print("File domain.yml created successfully.")
+    click.echo("File domain.yml created successfully.")
     return "OK"
+
+
+@rasa_plus.command()
+def unify_nlu(path="./data/nlu", to="./data", filename="nlu.md"):  # pragma: no cover
+    click.echo("Function not yet implemented.")
+    return
+
+
+@rasa_plus.command()
+def unify_stories(
+    path="./data/stories", to="./data", filename="stories.md"
+):  # pragma: no cover
+    click.echo("Function not yet implemented.")
+    return
+
+
+if __name__ == "__main__":
+    rasa_plus()
