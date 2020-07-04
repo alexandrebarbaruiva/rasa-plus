@@ -72,7 +72,7 @@ class TestRasaPlus(unittest.TestCase):
         content = "test domain"
         path = "tests/test_files/temp/"
         filename = "test.yml"
-        fpath= f"{path}{filename}"
+        fpath = f"{path}{filename}"
 
         if not os.path.exists(path):
             os.mkdir(path)
@@ -82,8 +82,6 @@ class TestRasaPlus(unittest.TestCase):
         self.assertTrue(os.path.exists(fpath) and os.path.isfile(fpath))
 
         shutil.rmtree(path, ignore_errors=True)
-        
-
 
 
 if __name__ == "__main__":
