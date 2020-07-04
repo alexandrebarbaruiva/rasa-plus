@@ -9,6 +9,7 @@ def _get_files(path, type=None):
     for (dirpath, dirnames, filenames) in walk(path):
         for file in filenames:
             files.append(f"{dirpath}/{file}")
+    files.sort()
     return files
 
 
@@ -32,7 +33,7 @@ def _generate_file(path, filename, content):
 
 
 @click.group()
-def rasa_plus():
+def rasa_plus():  # pragma: no cover
     pass
 
 
@@ -58,5 +59,5 @@ def unify_stories(
     return
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     rasa_plus()
