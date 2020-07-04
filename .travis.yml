@@ -1,0 +1,26 @@
+os: linux
+dist: xenial
+sudo: required
+env:
+  global:
+    - CC_TEST_REPORTER_ID=3e9fd412a47ad95adc6080ff7f4c947608c8fe430892bed0d0e5f0035c99ea1e
+language: python
+cache: pip
+python:
+  - 3.6.5
+install:
+  - pip install pip --upgrade
+  - pip install -r requirements.txt
+  - pip install -r requirements.test.txt
+script:
+  - flake8 .
+  - python3 -m pytest tests/tests.py
+before_script:
+  - curl -L "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64"
+    > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+after_success:
+  - codecov

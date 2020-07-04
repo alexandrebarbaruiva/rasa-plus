@@ -61,18 +61,11 @@ class TestRasaPlus(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             rasa_plus._generate_file(path=path, filename=filename, content=content)
 
-    def test_file_generation_path_does_not_exist(self):
-        content = "test domain"
-        path = "random"
-        filename = "test.yml"
-        with self.assertRaises(FileNotFoundError):
-            rasa_plus._generate_file(path=path, filename=filename, content=content)
-
     def test_file_generation(self):
         content = "test domain"
         path = "tests/test_files/temp/"
         filename = "test.yml"
-        fpath= f"{path}{filename}"
+        fpath = f"{path}{filename}"
 
         if not os.path.exists(path):
             os.mkdir(path)
@@ -82,8 +75,6 @@ class TestRasaPlus(unittest.TestCase):
         self.assertTrue(os.path.exists(fpath) and os.path.isfile(fpath))
 
         shutil.rmtree(path, ignore_errors=True)
-        
-
 
 
 if __name__ == "__main__":
