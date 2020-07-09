@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-class TestRasaPlus(unittest.TestCase):
+class TestRasaPlusDomain(unittest.TestCase):
 
     maxDiff = None
 
@@ -75,6 +75,49 @@ class TestRasaPlus(unittest.TestCase):
         self.assertTrue(os.path.exists(fpath) and os.path.isfile(fpath))
 
         shutil.rmtree(path, ignore_errors=True)
+
+
+class TestRasaPlusNLU(unittest.TestCase):
+
+    maxDiff = None
+
+    def setUp(self):
+        self.t_nlu = "tests/test_files/nlu"
+        return super().setUp()
+
+    def test_get_files_path_not_provided(self):
+        with self.assertRaises(TypeError):
+            rasa_plus._get_files()
+
+    def test_get_files_path_does_not_exist(self):
+        self.assertEqual(len(rasa_plus._get_files(path="random")), 0)
+
+    def test_file_finder(self):
+        self.assertEqual(len(rasa_plus._get_files(path=f"{self.t_nlu}/original")), 1)
+
+    def test_file_finder_multiple_files(self):
+        self.assertEqual(len(rasa_plus._get_files(path=f"{self.t_nlu}/2_split/")), 2)
+
+    def test_file_finder_multiple_folders(self):
+        self.assertEqual(
+            len(rasa_plus._get_files(path=f"{self.t_nlu}/multiple_folders")), 4
+        )
+
+    def test_unify_nlu_without_path(self):
+        with self.assertRaises(TypeError):
+            rasa_plus._unify_nlu()
+
+    # def test_simple_unification(self):
+    #     expected = open(f"{self.t_nlu}/expected/nlu-2-split.md", "r").read()
+    #     self.assertEqual(
+    #         rasa_plus._unify_nlu(path=f"{self.t_nlu}/2_split/"), expected
+    #     )
+
+    def test_complicated_unification(self):
+        expected = open(f"{self.t_nlu}/expected/nlu-multiple-folders.md", "r").read()
+        self.assertEqual(
+            rasa_plus._unify_nlu(path=f"{self.t_nlu}/multiple_folders/"), expected
+        )
 
 
 if __name__ == "__main__":

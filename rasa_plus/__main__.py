@@ -25,6 +25,18 @@ def _unify_domain(path):
     return result
 
 
+def _unify_nlu(path):
+    result = ""
+    for file in _get_files(path):
+        with open(file, "r") as content:
+            c = content.read().rstrip()
+            if not c.endswith("\n"):
+                c += "\n"
+            c += "\n"
+            result += c
+    return result
+
+
 def _generate_file(path, filename, content):
     if path.endswith("/"):
         path = path[:-1]
@@ -47,8 +59,10 @@ def unify_domain(path="./domain", to=".", filename="domain.yml"):  # pragma: no 
 
 @rasa_plus.command()
 def unify_nlu(path="./data/nlu", to="./data", filename="nlu.md"):  # pragma: no cover
-    click.echo("Function not yet implemented.")
-    return
+    content = _unify_nlu(path)
+    _generate_file(to, filename, content)
+    click.echo("File domain.yml created successfully.")
+    return "OK"
 
 
 @rasa_plus.command()
