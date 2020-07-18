@@ -70,5 +70,6 @@ def unify_project():  # pragma: no cover
     unify_stories()
     return "OK"
 
+
 if __name__ == "__main__":  # pragma: no cover
     rasa_plus()
