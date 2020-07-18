@@ -38,12 +38,12 @@ class TestRasaPlusDomain(unittest.TestCase):
 
     def test_unify_domain_without_path(self):
         with self.assertRaises(TypeError):
-            rasa_plus._unify_domain()
+            rasa_plus._unify_files()
 
     def test_simple_unification(self):
         expected = open(f"{self.t_domain}/expected/domain-2-split.yml", "r").read()
         self.assertEqual(
-            rasa_plus._unify_domain(path=f"{self.t_domain}/2_split/"), expected
+            rasa_plus._unify_files(path=f"{self.t_domain}/2_split/"), expected
         )
 
     def test_complicated_unification(self):
@@ -51,7 +51,7 @@ class TestRasaPlusDomain(unittest.TestCase):
             f"{self.t_domain}/expected/domain-multiple-folders.yml", "r"
         ).read()
         self.assertEqual(
-            rasa_plus._unify_domain(path=f"{self.t_domain}/multiple_folders/"), expected
+            rasa_plus._unify_files(path=f"{self.t_domain}/multiple_folders/"), expected
         )
 
     def test_file_generation_path_does_not_exist(self):
@@ -103,20 +103,16 @@ class TestRasaPlusNLU(unittest.TestCase):
             len(rasa_plus._get_files(path=f"{self.t_nlu}/multiple_folders")), 4
         )
 
-    def test_unify_nlu_without_path(self):
-        with self.assertRaises(TypeError):
-            rasa_plus._unify_nlu()
-
-    # def test_simple_unification(self):
-    #     expected = open(f"{self.t_nlu}/expected/nlu-2-split.md", "r").read()
-    #     self.assertEqual(
-    #         rasa_plus._unify_nlu(path=f"{self.t_nlu}/2_split/"), expected
-    #     )
+    def test_simple_unification(self):
+        expected = open(f"{self.t_nlu}/expected/nlu-2-split.md", "r").read()
+        self.assertEqual(
+            rasa_plus._unify_files(path=f"{self.t_nlu}/2_split/"), expected
+        )
 
     def test_complicated_unification(self):
         expected = open(f"{self.t_nlu}/expected/nlu-multiple-folders.md", "r").read()
         self.assertEqual(
-            rasa_plus._unify_nlu(path=f"{self.t_nlu}/multiple_folders/"), expected
+            rasa_plus._unify_files(path=f"{self.t_nlu}/multiple_folders/"), expected
         )
 
 
