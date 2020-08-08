@@ -76,6 +76,10 @@ class TestRasaPlusDomain(unittest.TestCase):
 
         shutil.rmtree(path, ignore_errors=True)
 
+    def test_validation(self):
+        self.assertEqual(rasa_plus._validate(""), ("", "Origin file is empty."))
+        self.assertEqual(rasa_plus._validate("Test"), ("Test", ""))
+
 
 class TestRasaPlusNLU(unittest.TestCase):
 
