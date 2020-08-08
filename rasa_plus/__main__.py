@@ -32,43 +32,69 @@ def _generate_file(path, filename, content):
         f.write(content)
 
 
+def _validate(content):
+    if len(content) == 0:
+        return (content, "Origin file is empty.")
+    return (content, "")
+
+
 @click.group()
 def rasa_plus():  # pragma: no cover
     pass
 
 
+def generic_unify(path, to, filename):
+    content = _unify_files(path)
+    validated_content, error = _validate(content)
+    if validated_content:
+        _generate_file(to, filename, content)
+        click.echo(f"[SUCCESS] File {filename} created successfully.")
+        return "OK"
+    else:
+        click.echo(f"[ERROR] File {filename} wasn't created. {error}")
+
+
+def _unify_domain(path="./domain", to=".", filename="domain.yml"):  # pragma: no cover
+    generic_unify(path, to, filename)
+
+
+def _unify_nlu(path="./data/nlu", to="./data", filename="nlu.md"):  # pragma: no cover
+    generic_unify(path, to, filename)
+
+
+def _unify_stories(
+    path="./data/stories", to="./data", filename="stories.md"
+):  # pragma: no cover
+    generic_unify(path, to, filename)
+
+
 @rasa_plus.command()
 def unify_domain(path="./domain", to=".", filename="domain.yml"):  # pragma: no cover
-    content = _unify_files(path)
-    _generate_file(to, filename, content)
-    click.echo("File domain.yml created successfully.")
-    return "OK"
+    _unify_domain(path, to, filename)
 
 
 @rasa_plus.command()
 def unify_nlu(path="./data/nlu", to="./data", filename="nlu.md"):  # pragma: no cover
-    content = _unify_files(path)
-    _generate_file(to, filename, content)
-    click.echo("File nlu.md created successfully.")
-    return "OK"
+    _unify_nlu(path, to, filename)
 
 
 @rasa_plus.command()
 def unify_stories(
     path="./data/stories", to="./data", filename="stories.md"
 ):  # pragma: no cover
-    content = _unify_files(path)
-    _generate_file(to, filename, content)
-    click.echo("File stories.md created successfully.")
+    _unify_nlu(path, to, filename)
+
+
+def _unify_project():  # pragma: no cover
+    unify_domain()
+    unify_nlu()
+    unify_stories()
     return "OK"
 
 
 @rasa_plus.command()
 def unify_project():  # pragma: no cover
-    unify_domain()
-    unify_nlu()
-    unify_stories()
-    return "OK"
+    _unify_project()
 
 
 if __name__ == "__main__":  # pragma: no cover
