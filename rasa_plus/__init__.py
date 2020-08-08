@@ -4,4 +4,4 @@ from rasa_plus.__main__ import _unify_stories as unify_stories
 from rasa_plus.__main__ import _unify_project as unify_project
 
 
-__all__ = ("unify_domain", "unify_nlu", "unify_stories")
+__all__ = ("unify_domain", "unify_nlu", "unify_stories", "unify_project")

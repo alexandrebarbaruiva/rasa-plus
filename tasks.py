@@ -34,6 +34,7 @@ def t(c):
     """
     Run tests and it's coverage.
     """
+    c.run("flake8 .")
     c.run("python3 -m pytest tests/tests.py",)
 
 
